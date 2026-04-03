@@ -17,7 +17,15 @@
       "Bash(where npx)",
       "Bash(node -e \"console.log\\(process.execPath\\)\")",
       "Bash(npm install @dagrejs/dagre)",
-      "Bash(gh repo create solution-prototyping --public --source=. --description \"Design your architecture visually. Generate production-ready code in any stack. Deploy to any cloud.\" --push)"
+      "Bash(gh repo create solution-prototyping --public --source=. --description \"Design your architecture visually. Generate production-ready code in any stack. Deploy to any cloud.\" --push)",
+      "mcp__desktop-commander__list_directory",
+      "mcp__desktop-commander__read_file",
+      "mcp__desktop-commander__get_file_info",
+      "Bash(\"C:/Users/reyne/source/repos/solution-prototyping/apps/web/README.md\":*)",
+      "Bash(gh repo edit --description \"Design your architecture visually. Generate production-ready code in any stack. Deploy to any cloud.\" --add-topic react --add-topic nextjs --add-topic code-generation --add-topic architecture --add-topic terraform --add-topic developer-tools --add-topic typescript --add-topic drag-and-drop --add-topic low-code)",
+      "Bash(vercel --version)",
+      "Bash(npm install -g vercel)",
+      "Bash(vercel --yes --prod)"
     ]
   }
 }

@@ -32,8 +32,11 @@ export function PropertiesPanel() {
 
   if (!selectedNode) {
     return (
-      <div className="w-80 border-l border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 flex items-center justify-center">
-        <p className="text-sm text-gray-400">Select a component to edit</p>
+      <div className="w-80 border-l border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 flex flex-col items-center justify-center gap-2 px-6">
+        <p className="text-sm font-medium text-gray-400">No component selected</p>
+        <p className="text-xs text-gray-400 dark:text-gray-600 text-center">
+          Click a component on the canvas to configure its tech stack, endpoints, models, and more.
+        </p>
       </div>
     );
   }
