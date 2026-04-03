@@ -16,6 +16,7 @@ import { useUiStore } from '@/stores/uiStore';
 import { nodeTypes } from '@/components/nodes/node-types';
 import { edgeTypes } from '@/components/edges/edge-types';
 import { useDragFromPalette } from '@/hooks/useDragFromPalette';
+import { SuggestionBar } from './SuggestionBar';
 
 export function DesignerCanvas() {
   const nodes = useDesignStore((s) => s.nodes);
@@ -51,7 +52,7 @@ export function DesignerCanvas() {
   }, [clearSelection]);
 
   return (
-    <div className="flex-1 h-full">
+    <div className="flex-1 h-full relative">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -87,6 +88,7 @@ export function DesignerCanvas() {
           pannable
         />
       </ReactFlow>
+      <SuggestionBar />
     </div>
   );
 }

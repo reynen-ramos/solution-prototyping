@@ -8,6 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { useDesignStore } from '@/stores/designStore';
 import { useUiStore } from '@/stores/uiStore';
 import { TemplateGallery } from './TemplateGallery';
+import { useDarkMode } from '@/hooks/useDarkMode';
 import {
   Save,
   FolderOpen,
@@ -19,10 +20,13 @@ import {
   Redo2,
   LayoutDashboard,
   LayoutTemplate,
+  Moon,
+  Sun,
 } from 'lucide-react';
 
 export function DesignerToolbar() {
   const [showTemplates, setShowTemplates] = useState(false);
+  const { isDark, toggle: toggleDarkMode } = useDarkMode();
   const projectName = useDesignStore((s) => s.projectName);
   const setProjectName = useDesignStore((s) => s.setProjectName);
   const getDesignDocument = useDesignStore((s) => s.getDesignDocument);
@@ -124,6 +128,9 @@ export function DesignerToolbar() {
 
       <Separator orientation="vertical" className="h-6" />
 
+      <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={toggleDarkMode} title={isDark ? 'Light Mode' : 'Dark Mode'}>
+        {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      </Button>
       <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={togglePropertiesPanel} title="Toggle Properties">
         <PanelRight className="h-4 w-4" />
       </Button>
