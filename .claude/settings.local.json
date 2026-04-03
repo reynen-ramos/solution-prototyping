@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:reactflow.dev)",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); print\\(data[0][''text''][:15000]\\)\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); const data=JSON.parse\\(fs.readFileSync\\(''C:/Users/reyne/.claude/projects/C--Users-reyne-source-repos-solution-prototyping/324146ce-032c-4b1f-bfd8-d86719f23e1c/tool-results/toolu_01Y9PRDMgjpntPJaPq12h8uC.json'',''utf8''\\)\\); const text=data[0].text; console.log\\(text.substring\\(0,15000\\)\\)\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); const data=JSON.parse\\(fs.readFileSync\\(''C:/Users/reyne/.claude/projects/C--Users-reyne-source-repos-solution-prototyping/324146ce-032c-4b1f-bfd8-d86719f23e1c/tool-results/toolu_01Y9PRDMgjpntPJaPq12h8uC.json'',''utf8''\\)\\); const text=data[0].text; console.log\\(text.substring\\(15000,30000\\)\\)\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); const data=JSON.parse\\(fs.readFileSync\\(''C:/Users/reyne/.claude/projects/C--Users-reyne-source-repos-solution-prototyping/324146ce-032c-4b1f-bfd8-d86719f23e1c/tool-results/toolu_01Y9PRDMgjpntPJaPq12h8uC.json'',''utf8''\\)\\); const text=data[0].text; console.log\\(text.substring\\(30000\\)\\)\")",
+      "Bash(npx create-next-app@latest apps/web --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack --use-npm)",
+      "Bash(npm install @xyflow/react zustand nanoid lucide-react class-variance-authority clsx tailwind-merge jszip file-saver handlebars)",
+      "Bash(npm install -D @types/file-saver)",
+      "Bash(node -e \"console.log\\(require\\(''next/package.json''\\).version\\)\")",
+      "Bash(npx shadcn@latest init -d)",
+      "Bash(npx shadcn@latest add input label select tabs badge separator scroll-area tooltip card sheet dialog -y)",
+      "Bash(npx next build)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where npx)",
+      "Bash(node -e \"console.log\\(process.execPath\\)\")",
+      "Bash(npm install @dagrejs/dagre)"
+    ]
+  }
+}
