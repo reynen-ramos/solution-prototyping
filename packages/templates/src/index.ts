@@ -30,6 +30,7 @@ import { template as schemaSQL } from './database/schema-sql';
 // React templates
 import { template as reactAppTsx } from './react/app-tsx';
 import { template as reactPackageJson } from './react/package-json';
+import { appCss as reactAppCss } from './react/app-css';
 import { template as reactApiClient } from './react/api-client-ts';
 
 // Shared
@@ -145,6 +146,7 @@ export function generateFrontendFiles(ctx: TemplateContext & { appName: string; 
 
   files.push({ path: `${dir}/package.json`, content: render(reactPackageJson, ctx), source: 'template' });
   files.push({ path: `${dir}/src/App.tsx`, content: render(reactAppTsx, ctx), source: 'template' });
+  files.push({ path: `${dir}/src/App.css`, content: reactAppCss, source: 'template' });
   files.push({ path: `${dir}/Dockerfile`, content: reactDockerfile, source: 'template' });
 
   // Generate typed API client if there are models

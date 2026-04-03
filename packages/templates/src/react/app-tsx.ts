@@ -1,59 +1,63 @@
-export const template = `import { useEffect, useState } from 'react';
+export const template = generateAppTemplate();
 
-const API_URL = import.meta.env.VITE_API_URL || '{{apiUrl}}';
-
-{{#each pages}}
-function {{pascalCase name}}Page() {
-  return (
-    <div>
-      <h2>{{name}}</h2>
-      <p>{{description}}</p>
-    </div>
-  );
+function generateAppTemplate(): string {
+  // Build the template as a string to avoid Handlebars parsing JSX double-braces
+  const lines = [
+    `import { useEffect, useState } from 'react';`,
+    `import './App.css';`,
+    ``,
+    `const API_URL = import.meta.env.VITE_API_URL || '{{apiUrl}}';`,
+    ``,
+    `{{#each pages}}`,
+    `function {{pascalCase name}}Page() {`,
+    `  return (`,
+    `    <div className="page">`,
+    `      <h2>{{name}}</h2>`,
+    `      <p>{{description}}</p>`,
+    `    </div>`,
+    `  );`,
+    `}`,
+    ``,
+    `{{/each}}`,
+    `function App() {`,
+    `  const [health, setHealth] = useState<string>('checking...');`,
+    `  const [currentPage, setCurrentPage] = useState<string>('{{#if pages}}{{pages.0.route}}{{else}}/{{/if}}');`,
+    ``,
+    `  useEffect(() => {`,
+    "  fetch(`${API_URL}/health`)",
+    `      .then(r => r.json())`,
+    `      .then(d => setHealth(d.status))`,
+    `      .catch(() => setHealth('offline'));`,
+    `  }, []);`,
+    ``,
+    `  return (`,
+    `    <div className="app">`,
+    `      <header className="app-header">`,
+    `        <h1>{{appName}}</h1>`,
+    `        <p className="status">`,
+    `          API Status: <span className={health === 'ok' ? 'status-ok' : 'status-error'}>{health}</span>`,
+    `        </p>`,
+    `      </header>`,
+    `      <nav className="app-nav">`,
+    `{{#each pages}}`,
+    `        <button`,
+    `          onClick={() => setCurrentPage('{{route}}')}`,
+    `          className={currentPage === '{{route}}' ? 'nav-btn active' : 'nav-btn'}`,
+    `        >`,
+    `          {{name}}`,
+    `        </button>`,
+    `{{/each}}`,
+    `      </nav>`,
+    `      <main>`,
+    `{{#each pages}}`,
+    `        {currentPage === '{{route}}' && <{{pascalCase name}}Page />}`,
+    `{{/each}}`,
+    `      </main>`,
+    `    </div>`,
+    `  );`,
+    `}`,
+    ``,
+    `export default App;`,
+  ];
+  return lines.join('\n');
 }
-
-{{/each}}
-function App() {
-  const [health, setHealth] = useState<string>('checking...');
-  const [currentPage, setCurrentPage] = useState<string>('{{#if pages}}{{pages.0.route}}{{else}}/{{/if}}');
-
-  useEffect(() => {
-    fetch(\`\${API_URL}/health\`)
-      .then(r => r.json())
-      .then(d => setHealth(d.status))
-      .catch(() => setHealth('offline'));
-  }, []);
-
-  return (
-    <div style={{ fontFamily: 'system-ui', maxWidth: 960, margin: '0 auto', padding: '2rem' }}>
-      <header style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: '1rem', marginBottom: '2rem' }}>
-        <h1>{{appName}}</h1>
-        <p style={{ color: '#6b7280' }}>API Status: <span style={{ color: health === 'ok' ? '#10b981' : '#ef4444' }}>{health}</span></p>
-      </header>
-      <nav style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
-{{#each pages}}
-        <button
-          onClick={() => setCurrentPage('{{route}}')}
-          style={{
-            padding: '0.5rem 1rem',
-            border: currentPage === '{{route}}' ? '2px solid #3b82f6' : '1px solid #d1d5db',
-            borderRadius: '0.375rem',
-            background: currentPage === '{{route}}' ? '#eff6ff' : 'white',
-            cursor: 'pointer',
-          }}
-        >
-          {{name}}
-        </button>
-{{/each}}
-      </nav>
-      <main>
-{{#each pages}}
-        {currentPage === '{{route}}' && <{{pascalCase name}}Page />}
-{{/each}}
-      </main>
-    </div>
-  );
-}
-
-export default App;
-`;
